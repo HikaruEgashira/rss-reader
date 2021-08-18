@@ -1,7 +1,5 @@
 import { useState } from "react";
 import Image from "next/image";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 
 import { getHostFromURL, getFaviconSrcFromHostname } from "../lib/helper";
 
@@ -13,8 +11,6 @@ export type PostItem = {
   isoDate?: string;
   dateMiliSeconds: number;
 };
-
-dayjs.extend(relativeTime);
 
 const PostLink: React.FC<{ item: PostItem }> = (props) => {
   const { title, link, dateMiliSeconds } = props.item;
