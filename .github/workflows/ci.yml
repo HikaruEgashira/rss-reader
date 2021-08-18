@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   build:
-    name: Build, lint, test
+    name: Build, lint
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -26,9 +26,9 @@ jobs:
         id: lint
         run: yarn lint
 
-      - name: Test
-        id: test
-        run: yarn test --ci --coverage --maxWorkers=2
+      # - name: Test
+      #   id: test
+      #   run: yarn test --ci --coverage --maxWorkers=2
 
       - name: Build
         id: build
@@ -41,13 +41,13 @@ jobs:
         with:
           msg: "リントでエラーが発生しました！`yarn lint`でエラーの出る箇所の修正をお願いします🙏"
           check_for_duplicate_msg: false
-      - if: failure() && steps.test.outcome == 'failure'
-        uses: unsplash/comment-on-pr@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: "テストでエラーが発生しました！`yarn test`でテストの修正お願いします🙏"
-          check_for_duplicate_msg: false
+      # - if: failure() && steps.test.outcome == 'failure'
+      #   uses: unsplash/comment-on-pr@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     msg: "テストでエラーが発生しました！`yarn test`でテストの修正お願いします🙏"
+      #     check_for_duplicate_msg: false
       - if: failure() && steps.build.outcome == 'failure'
         uses: unsplash/comment-on-pr@master
         env:
