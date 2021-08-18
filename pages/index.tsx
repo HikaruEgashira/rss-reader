@@ -37,7 +37,7 @@ export default function Home() {
           </label>
           <input
             className={`input input-bordered ${validForm ? "" : "input-error"}`}
-            placeholder={feedList[Math.round(Math.random() * feedList.length)]}
+            placeholder={feedList[Math.floor(Math.random() * feedList.length)]}
             type="text"
             value={text}
             onChange={onChangeInput}
