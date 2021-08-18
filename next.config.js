@@ -24,7 +24,10 @@ function UseEsbuildLoader(config, options) {
   }
 }
 
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = {
   webpack: (config, { webpack }) => {
     config.plugins.push(
       new webpack.ProvidePlugin({
@@ -46,3 +49,5 @@ module.exports = {
     domains: ["www.google.com"],
   },
 };
+
+module.exports = nextConfig;
