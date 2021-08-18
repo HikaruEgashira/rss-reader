@@ -1,6 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import urlRegex from "url-regex";
 
 export default function Home() {
@@ -37,7 +37,7 @@ export default function Home() {
           </label>
           <input
             className={`input input-bordered ${validForm ? "" : "input-error"}`}
-            placeholder={feedList[Math.floor(Math.random() * feedList.length)]}
+            placeholder={feedList[0]}
             type="text"
             value={text}
             onChange={onChangeInput}

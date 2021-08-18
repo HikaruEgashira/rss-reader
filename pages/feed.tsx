@@ -1,22 +1,21 @@
 import { useRouter } from "next/router";
-import { useAsync } from "react-use";
 import Link from "next/link";
-import Parser from "rss-parser";
-
+import useSwr from "swr";
+import { NextPage } from "next";
 import { PostItem, PostList } from "../components/postList";
 
-const parser = new Parser();
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const Post = () => {
+const Post: NextPage = () => {
   const router = useRouter();
   const { url } = router.query;
 
-  const { value } = useAsync(async () => {
-    const data = await parser.parseURL(String(url));
-    return data.items as PostItem[];
-  }, [url]);
+  const { data } = useSwr<PostItem[]>(
+    url ? `/api/rss?url=${url}` : null,
+    fetcher
+  );
 
-  if (!value) {
+  if (!data) {
     return (
       <div className="px-4 py-10 text-center text-opacity-70">loading</div>
     );
@@ -28,7 +27,7 @@ const Post = () => {
         <div className="py-3 px-5 hover:line-through">
           <Link href="/">← 戻る</Link>
         </div>
-        <PostList items={value} title={`${url}`}></PostList>
+        <PostList items={data} title={`${url}`}></PostList>
       </div>
     </main>
   );
