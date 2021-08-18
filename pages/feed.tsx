@@ -20,10 +20,11 @@ const Post = () => {
   }
 
   return (
-    <div>
-      <p>Post: {url}</p>
-      <PostList items={value}></PostList>
-    </div>
+    <main className="px-4 py-10 bg-base-200 min-h-screen">
+      <div className="max-w-5xl mx-auto">
+        <PostList items={value} title={`${url}`}></PostList>
+      </div>
+    </main>
   );
 };
 

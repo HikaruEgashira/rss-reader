@@ -22,30 +22,31 @@ const PostLink: React.FC<{ item: PostItem }> = (props) => {
   const hostname = getHostFromURL(link);
 
   return (
-    <article>
-      <a href={link}>
-        <h2>{title}</h2>
+    <li>
+      <a className="grid gap-2" href={link} target="_blank" rel="noreferrer">
         {hostname && (
-          <div>
+          <div className="text-right">
             <Image
               src={getFaviconSrcFromHostname(hostname)}
               width={14}
               height={14}
-              alt="host"
+              alt="icon"
             />
-            {hostname}
           </div>
         )}
+        <h2>{title}</h2>
+        {dateMiliSeconds && dateMiliSeconds > Date.now() - 86400000 * 3 && (
+          <div className="text-accent">NEW</div>
+        )}
       </a>
-      {dateMiliSeconds && dateMiliSeconds > Date.now() - 86400000 * 3 && (
-        <div>NEW</div>
-      )}
-    </article>
+    </li>
   );
 };
 
-export const PostList: React.FC<{ items: PostItem[] }> = (props) => {
-  const [displayItemsCount, setDisplayItemsCount] = useState<number>(32);
+export const PostList: React.FC<{ items: PostItem[]; title: string }> = (
+  props
+) => {
+  const [displayItemsCount, setDisplayItemsCount] = useState(32);
   const totalItemsCount = props.items?.length || 0;
   const canLoadMore = totalItemsCount - displayItemsCount > 0;
 
@@ -55,11 +56,14 @@ export const PostList: React.FC<{ items: PostItem[] }> = (props) => {
 
   return (
     <>
-      <div>
+      <ul className="menu py-3">
+        <li className="menu-title">
+          <span>{props.title}</span>
+        </li>
         {props.items.slice(0, displayItemsCount).map((item, i) => (
           <PostLink key={`post-item-${i}`} item={item} />
         ))}
-      </div>
+      </ul>
       {canLoadMore && (
         <div>
           <button onClick={() => setDisplayItemsCount(displayItemsCount + 32)}>
