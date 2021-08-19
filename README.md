@@ -4,6 +4,9 @@
 
 `esbuild + next + tailwindcssのjit`での爆速開発体験をしてみた。
 
+
+![](./image/feed.png)
+
 ## 仕様技術
 
 - next.js
