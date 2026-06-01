@@ -1,7 +1,15 @@
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { ChangeEvent, useState } from "react";
-import urlRegex from "url-regex";
+
+function isValidUrl(str: string): boolean {
+  try {
+    const url = new URL(str);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +19,7 @@ export default function Home() {
 
   const onChangeInput = (evt: ChangeEvent<HTMLInputElement>) => {
     const value = evt.target.value;
-    const isValid = urlRegex({ exact: true }).test(text);
+    const isValid = isValidUrl(value);
 
     setText(value);
     setValidForm(isValid);
