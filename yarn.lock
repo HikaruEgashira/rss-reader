@@ -890,10 +890,10 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha512-jXKhWqXPmlUeoQnF/EhTtTl4C9SnrxSH/jZUih3jmO6lBKr99rP3/+FmrMj4EFpOXzMtXHAZkd3x0E6h6Fgflw==
 
-daisyui@^1.12.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-1.12.0.tgz#cd270d2a7348ff42980b7d51e4be27744ab00bdf"
-  integrity sha512-Rtt4GbcA3Z81T9TipM6UkqGwxS9v7vOEI9Fyr0+CdJmTsvrDqdYgh4Z8Uhgftt3F0Eqrq1HljnFUK/FPk46gkg==
+daisyui@^5.5.23:
+  version "5.5.23"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-5.5.23.tgz#fb3c3f17954dc972d4459236c7925f6f46262d1b"
+  integrity sha512-xuheNUSL4T6ZVtWXoioqcNkjoyGX85QTDz4HTw2aBPfqk4fuMjax5HDo8qCmpV6M1YN8bGvfx5BpYCoDeRlt+A==
 
 damerau-levenshtein@^1.0.6:
   version "1.0.7"
